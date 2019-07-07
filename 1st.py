@@ -1,5 +1,6 @@
 import time
 import xlrd
+import urllib3
 
 from selenium import webdriver
 

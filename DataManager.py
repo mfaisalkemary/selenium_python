@@ -17,12 +17,25 @@ class DataManager:
      return Workbook[sheet].cell(col,row)
 
  def get_execution_flag_rownum(path):
+     list =[]
      workbook= load_workbook(path)
-     sheet=workbook['Sheet1']
+     sheet=workbook['Driver']
      for row in sheet.iter_rows():
          for cell in row:
-             if cell.value =="y":
-                 return (cell.row)
+             if cell.value =="YES":
+                 list.append(cell.row)
+     return list
+
+
+ def get_data_sheet_name(path):
+    list=[]
+    worksheet=load_workbook(path)['Driver']
+    for item in DataManager.get_execution_flag_rownum(path):
+        list.append(worksheet.cell(row=item,column=7).value)
+    print(list)
+
+
+
 
 
 
@@ -32,9 +45,10 @@ class DataManager:
 
 #print(DataManager.getcellData('/my_Stuff/python/sheet1.xlsx','Sheet1',4,3).value)
 
-DataManager.get_execution_flag_rownum('/my_Stuff/python/Untitled 1.xlsx')
+# DataManager.get_execution_flag_rownum('/my_Stuff/python/Untitled 1.xlsx')
 
-
+# print(DataManager.get_execution_flag_rownum('C:/python/DataMgmt.xlsx'))
+DataManager.get_data_sheet_name('C:/python/DataMgmt.xlsx')
 
 
 
