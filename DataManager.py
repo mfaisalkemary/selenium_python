@@ -27,12 +27,33 @@ class DataManager:
      return list
 
 
- def get_data_sheet_name(path):
+ def get_Data_Sheet_Name(path):
     list=[]
     worksheet=load_workbook(path)['Driver']
     for item in DataManager.get_execution_flag_rownum(path):
         list.append(worksheet.cell(row=item,column=7).value)
-    print(list)
+    return (list)
+
+ def get_Data_Sheet_RowNum(path):
+    list=[]
+    worksheet=load_workbook(path)['Driver']
+    for item in DataManager.get_execution_flag_rownum(path):
+        list.append(worksheet.cell(row=item,column=8).value)
+    return (list)
+
+ def get_Data_Rows(path,index):
+     sheet=load_workbook(path)[DataManager.get_Data_Sheet_Name(path)[index]]
+     dict={}
+     worksheet = sheet
+     # dict[sheet.iter_rows(1,1)]
+
+
+
+
+     for row in worksheet.iter_rows(1,1):
+         for cell in row:
+           print (cell.value,end=',')
+         print()
 
 
 
@@ -48,9 +69,10 @@ class DataManager:
 # DataManager.get_execution_flag_rownum('/my_Stuff/python/Untitled 1.xlsx')
 
 # print(DataManager.get_execution_flag_rownum('C:/python/DataMgmt.xlsx'))
-DataManager.get_data_sheet_name('C:/python/DataMgmt.xlsx')
+# print(DataManager.get_Data_Sheet_Name('DataMgmt.xlsx')[0])
+# DataManager.get_Data_Sheet_RowNum('DataMgmt.xlsx')
 
-
+DataManager.get_Data_Rows('DataMgmt.xlsx',0)
 
 
 
