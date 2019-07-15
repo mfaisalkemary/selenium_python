@@ -1,4 +1,5 @@
 DataMgmt.xlsx
 chromedriver.exe
 .~lock.DataMgmt.xlsx#
-.idea
+.idea/
+__pycache__/
